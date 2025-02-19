@@ -1,45 +1,55 @@
 <div class="cswc-discover-wrapper">
+	<a href="https://wordpress.org/plugins/fish-and-ships/" target="_blank" title="Advanced Shipping Rates for WooCommerce"><img src="<?php echo COMING_SOON_WC_URL; ?>assets/img/advanced-shipping-rates-wc.png" width="800" height="260" alt="Advanced Shipping Rates for WooCommerce" /></a>
+
 	<div class="cswc-content">
 
-		<h2><strong>Fish and Ships</strong> The best shipping method table rate <br>for WooCommerce</h2>
+		<h2>The Best Shipping Plugin for WooCommerce</h2>
 
-		<p><a href="https://www.youtube.com/watch?v=wRsoUYiHQRY&t=18s&ab_channel=WpCentricsFishAndShips" target="_blank" class="fns-video-link" title="Watch shipping boxes video on YouTube"><img src="<?php echo COMING_SOON_WC_URL; ?>assets/img/fish-n-ships-video-preview.jpg" width="800" height="450" alt="Fish and ships video" /></a></p>
+		<p>With simple setup, an intuitive interface, and advanced functionalities, <strong>Wp-Centrics Advanced Shipping Rates for WooCommerce</strong>, previously known as <strong>Fish and Ships</strong>, helps you to <strong>optimize shipping costs</strong>, increase sales, and prevent abandoned carts.</p>
 
-		<p>A conditional shipping method table rate for WooCommerce: It allows you to set up weight-based shipping rates or any other criteria such as price, volume, quantity, or category</p>
+		<p>Thanks to its multiple options, it is the preferred choice for those seeking an <strong>advanced shipping plugin</strong> fully adaptable to their needs.</p>
 
-		<p>You can also configure conditional free shipping, conditional local pickup, conditional flat rate or any shipping rate.</p>
+		<h3>Why do you need a WooCommerce Shipping Plugin?</h3>
 
-		<h3>easy as eat fish and <em>ships</em></h3>
+		<p>Standard shipping rates often fail to solve the challenges of an online store. <strong>Advanced Shipping Rates for WooCommerce</strong> stands out as the best WooCommerce shipping plugin thanks to its advanced features and ease of use.</p>
+		
+		<p>This WooCommerce Shipping plugin enables you to:</p>
+		
+		<ul class="llista">
+			<li><strong>Avoid financial losses</strong> by adjusting rates based on product, zone, or conditions.</li>
+			<li><strong>Reduce cart abandonment</strong> by offering clear and fair shipping costs.</li>
+			<li><strong>Increase customer trust</strong> with flexible and tailored shipping rates.</li>
+			<li><strong>Minimize concerns</strong> and complaints about shipping costs.</li>
+		</ul>
 
-		<p><strong>NOW WITH +60 SAMPLES READY TO USE:</strong> Choose from 25 fullcases and 38 snippets, making it easy to select and customize according to your needs.</p>
-
-		<h4>Exact fit shipping rates for your WooCommerce shop</h4>
-		<p>Most online shops set generic shipping rates: too much for some products and too low for others… are you?</p>
-
-		<h3>flexible shipping table rate <br>where anything can be set & combined</h3>
+		<h3>flexible shipping table rate <br>where anything can be set &amp; combined</h3>
 		<ul class="llista">
 			<li>Conditional shipping</li>
 			<li>Free shipping</li>
 			<li>Weight-based shipping</li>
-			<li>Volume-based shipping</li>
+			<li>Volume &amp; Volumetric-based shipping</li>
 			<li>Price-based shipping</li>
 			<li>Cart product quantity-based shipping</li>
-			<li>Cart totals-based shipping [PRO]</li>
 			<li>Dimensions-based shipping (width, height and/or length)</li>
 			<li>Conditional local pickup reduced rates or free</li>
 			<li>Any shipping rate parcels can be set manually (not API connected)</li>
 			<li>Shipping rates per shipping class</li>
-			<li>Shipping rates per product category or tag category [PRO]</li>
-			<li>Built-in packer algorithm [PRO]</li>
-			<li>Extra fees, handling, discounts after shipping rate calculation [PRO]</li>
-			<li>Per user role, ZIP/Postcode and much more [PRO]</li>
+			<li>Advanced product fields: Supports most commonly used 3rd party plugins.</li>
+			<li>Range assistant based on weight, size, volume or volumetric. <span class="cswc-pro-icon">PRO</span></li>
+			<li>Cart totals-based shipping <span class="cswc-pro-icon">PRO</span></li>
+			<li>Shipping rates per product category or tag category <span class="cswc-pro-icon">PRO</span></li>
+			<li>Built-in packer algorithm &amp; math formulas<span class="cswc-pro-icon">PRO</span></li>
+			<li>Extra fees, handling, discounts after shipping rate calculation <span class="cswc-pro-icon">PRO</span></li>
+			<li>Geographical region or postal codes. <span class="cswc-pro-icon">PRO</span></li>
+			<li>Calendar &amp; Role: Date, day of the week, month, time, or user role. <span class="cswc-pro-icon">PRO</span></li>
+			<li>Custom messages &amp; hide other methods. <span class="cswc-pro-icon">PRO</span></li>
 		</ul>
 		<h3>…any combination, nested as needed. Really!</h3>
 	</div>
 </div>
 <div class="cswc_fixed_buttons">
 	<a href="https://wordpress.org/plugins/fish-and-ships/" target="_blank">Get it in WordPress.org</a>
-	<a href="https://www.wp-centrics.com/woocommerce-fish-and-ships-free-vs-pro/" target="_blank">Free vs Pro</a>
+	<a href="https://www.wp-centrics.com/advanced-shipping-rates-woocommerce-free-vs-pro/" target="_blank">Free vs Pro</a>
 </div>
 <style>
 	.cswc-discover-wrapper {
@@ -50,7 +60,7 @@
 		box-shadow: #aaa 0 0 3px;
 	}
 	.cswc-discover-wrapper .cswc-content {
-		padding: 30px 50px;
+		padding: 0 50px 30px 50px;
 	}
 	.cswc-discover-wrapper h2 {
 		font-size: 28px;
@@ -170,6 +180,19 @@
 	#wpfooter {
 		padding-top: 0;
 		right: auto;
+	}
+	.cswc-pro-icon {
+		display: inline-block;
+		font-size: 10px;
+		background: #888;
+		color: #fff;
+		border-radius: 4px;
+		line-height: 1.3em;
+		padding: 0 .25em;
+		vertical-align: 3px;
+		margin-left: 5px;
+		margin-right: 5px;
+		font-weight: 600;
 	}
 
 </style>

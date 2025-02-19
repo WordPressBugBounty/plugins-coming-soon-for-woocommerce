@@ -74,7 +74,7 @@ $current_options = $this->get_options();
 			<nav class="nav-tab-wrapper woo-nav-tab-wrapper">
 				<a href="<?php echo admin_url('admin.php?page=coming-soon-wc-opts'); ?>" class="nav-tab <?php echo $tab == 'loop' ? 'nav-tab-active' : ''; ?>"><?php esc_html_e("Badge on loop", 'coming-soon-for-woocommerce'); ?></a>
 				<a href="<?php echo admin_url('admin.php?page=coming-soon-wc-opts&tab=product'); ?>" class="nav-tab <?php echo $tab == 'product' ? 'nav-tab-active' : ''; ?>"><?php esc_html_e("Badge on product page", 'coming-soon-for-woocommerce'); ?></a>
-				<a href="<?php echo admin_url('admin.php?page=coming-soon-wc-opts&tab=discover'); ?>" class="nav-tab <?php echo $tab == 'discover' ? 'nav-tab-active' : ''; ?>">Discover Fish and Ships</a>
+				<a href="<?php echo admin_url('admin.php?page=coming-soon-wc-opts&tab=discover'); ?>" class="nav-tab <?php echo $tab == 'discover' ? 'nav-tab-active' : ''; ?>">Advanced Shipping Rates</a>
 			</nav>
 			<?php 
 			if ( $tab == 'loop' || $tab == 'product') {
