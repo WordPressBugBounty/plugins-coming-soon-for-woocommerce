@@ -24,8 +24,13 @@
 .coming-soon-wc-columns .col {
 	padding: 10px;
 	margin: 5px;
-	border: #aaa 1px solid;
+	border: #ccc 1px solid;
 	text-align: center;
+	background: #f8f8f8;
+	border-radius: 4px;	text-align: center;
+}
+.coming-soon-wc-columns .col:hover {
+	background: #fff;
 }
 
 #coming_soon_wc_loop_icon_style th,

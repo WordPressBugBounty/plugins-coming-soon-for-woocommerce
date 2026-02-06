@@ -1,12 +1,12 @@
 ﻿=== Coming Soon Badges for WooCommerce ===
 Contributors: wpcentrics
 Donate link: https://www.wp-centrics.com/
-Tags: badge, coming soon, woocommerce badge, product badge
+Tags: woocommerce badge, coming soon, badge, product badge
 Requires at least: 4.7
-Tested up to: 6.7
+Tested up to: 6.9
 WC requires at least: 3.0
-WC tested up to: 9.6
-Stable tag: 1.0.19
+WC tested up to: 10.4.3
+Stable tag: 1.1.0
 Requires PHP: 7.0
 Requires Plugins: woocommerce
 License: GPLv2 or later
@@ -128,6 +128,11 @@ The plugin can't guess your theme font-family or product thumbnail size, so mayb
 4. The product page
 
 == Changelog ==
+
+= 1.1.0 - 2026-01-09 =
+* Checked for WordPress 6.9
+* Checked for WooCommerce 9.4
+* Checked for PHP 8.4
 
 = 1.0.19 - 2025-02-19 =
 * Checked for WooCommerce 9.4

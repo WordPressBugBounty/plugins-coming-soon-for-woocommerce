@@ -1,14 +1,15 @@
 <div class="cswc-discover-wrapper">
-	<a href="https://wordpress.org/plugins/fish-and-ships/" target="_blank" title="Advanced Shipping Rates for WooCommerce"><img src="<?php echo COMING_SOON_WC_URL; ?>assets/img/advanced-shipping-rates-wc.png" width="800" height="260" alt="Advanced Shipping Rates for WooCommerce" /></a>
+	<a href="https://wordpress.org/plugins/fish-and-ships/" target="_blank" title="Advanced Shipping Rates for WooCommerce"><img src="<?php echo COMING_SOON_WC_URL; ?>assets/img/advanced-shipping-rates-wc2026.png" width="800" height="260" alt="Advanced Shipping Rates for WooCommerce" class="cswc-discover-ban" /></a>
 
 	<div class="cswc-content">
 
 		<h2>The Best Shipping Plugin for WooCommerce</h2>
 
-		<p>With simple setup, an intuitive interface, and advanced functionalities, <strong>Wp-Centrics Advanced Shipping Rates for WooCommerce</strong>, previously known as <strong>Fish and Ships</strong>, helps you to <strong>optimize shipping costs</strong>, increase sales, and prevent abandoned carts.</p>
+		<p>With simple setup, an intuitive interface, and advanced functionalities, <br><strong>Wp-Centrics Advanced Shipping Rates for WooCommerce</strong> helps you to <strong>optimize shipping costs</strong>, increase sales, and prevent abandoned carts.</p>
 
-		<p>Thanks to its multiple options, it is the preferred choice for those seeking an <strong>advanced shipping plugin</strong> fully adaptable to their needs.</p>
-
+		<p>The most flexible and all-in-one shipping table rate plugin it is the preferred choice for those seeking an <strong>advanced shipping plugin</strong> fully adaptable to their needs.</p>
+		
+		<p><a href="https://www.youtube.com/watch?v=HM8sSz9xsbg" target="_blank" class="cswc-video-link"><img src="<?php echo COMING_SOON_WC_URL; ?>assets/img/advanced-shipping-rates-video.png" width="800" height="450" alt="Video about Advanced Shipping Rates for WooCommerce" /></a></p>
 		<h3>Why do you need a WooCommerce Shipping Plugin?</h3>
 
 		<p>Standard shipping rates often fail to solve the challenges of an online store. <strong>Advanced Shipping Rates for WooCommerce</strong> stands out as the best WooCommerce shipping plugin thanks to its advanced features and ease of use.</p>
@@ -48,25 +49,32 @@
 	</div>
 </div>
 <div class="cswc_fixed_buttons">
-	<a href="https://wordpress.org/plugins/fish-and-ships/" target="_blank">Get it in WordPress.org</a>
-	<a href="https://www.wp-centrics.com/advanced-shipping-rates-woocommerce-free-vs-pro/" target="_blank">Free vs Pro</a>
+	<a href="https://wordpress.org/plugins/fish-and-ships/" target="_blank">Get Free Version</a>
+	<a href="https://www.wp-centrics.com/" target="_blank">Get more info</a>
 </div>
 <style>
 	.cswc-discover-wrapper {
-		max-width: 800px;
-		margin: 30px auto;
 		background: #fff;
 		text-align: center;
 		box-shadow: #aaa 0 0 3px;
+		margin: 30px auto;
+		max-width: 1200px;
+	}
+	.cswc-discover-ban {
+		width: 100%;
+		height: auto;
+		display: block;
 	}
 	.cswc-discover-wrapper .cswc-content {
 		padding: 0 50px 30px 50px;
+		max-width: 800px;
+		margin: 0 auto;
 	}
 	.cswc-discover-wrapper h2 {
 		font-size: 28px;
 		line-height:36px;
-		font-weight: 600;
-		color: #a36597;
+		font-weight: 700;
+		color: #0079c4;
 	}
 	.cswc-discover-wrapper h2 strong {
 		display: block;
@@ -80,15 +88,15 @@
 	.cswc-discover-wrapper h4 {
 		font-size: 22px;
 		line-height: 30px;
-		font-weight: 600;
+		font-weight: 700;
 		margin-top: 40px;
 	}
 	.cswc-discover-wrapper h3 {
-		color: #a36597;
+		color: #0079c4;
 		font-size: 28px;
 	}
 	.cswc-discover-wrapper a {
-		color: #a36597;
+		color: #0079c4;
 		text-decoration: underline;
 	}
 	.cswc-discover-wrapper a:hover {
@@ -104,21 +112,25 @@
 		margin-top: 10px;
 	}
 	.cswc-discover-wrapper strong {
-		color: #a36597;
+		color: #0079c4;
 	}
 	.cswc-discover-wrapper p,
 	.cswc-discover-wrapper li {
 		font-size: 1.3em;
 		line-height: 1.5em;
 	}
-	.cswc-discover-wrapper .fns-video-link {
+
+	.cswc-discover-wrapper .cswc-video-link {
 		display: inline-block;
-		margin: auto;
-		border: #fff 5px solid;
-		max-width: 500px;
+		margin: 50px auto 20px;
 	}
-	.cswc-discover-wrapper .fns-video-link img {
+	.cswc-discover-wrapper .cswc-video-link img {
+		max-width: 600px;
 		display: block;
+		border: transparent 2px solid;
+	}
+	.cswc-discover-wrapper .cswc-video-link:hover img {
+		border-color: #0079c4;
 	}
 
 	.cswc-discover-wrapper img {
@@ -146,7 +158,7 @@
 	.cswc-discover-wrapper .llista li:before,
 	.cswc-discover-wrapper .llistes_dos_cols li::before {
 		content: "\2022";
-		color: #a36597;
+		color: #0079c4;
 		font-weight: bold;
 		display: inline-block;
 		width: 0.75em;
@@ -160,12 +172,17 @@
 		bottom: 0;
 		text-align: center;
 		padding: 15px 15px 15px 160px;
-		background: #a36597;
+		background: #0079c4;
+	}
+	@media only screen and (max-width: 960px) {
+		.cswc_fixed_buttons {
+			padding-left: 15px;
+		}
 	}
 	.cswc_fixed_buttons a {
 		display: inline-block;
 		padding: 10px 20px;
-		color: #a36597;
+		color: #0079c4;
 		background: #fff;
 		font-weight: 600;
 		font-size: 16px;
@@ -174,7 +191,7 @@
 		text-decoration: none;
 	}
 	.cswc_fixed_buttons a:hover {
-		background: #000;
+		background: #f6ab00;
 		color: #fff;
 	}
 	#wpfooter {

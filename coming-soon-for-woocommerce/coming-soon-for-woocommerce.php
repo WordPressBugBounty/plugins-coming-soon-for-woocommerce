@@ -3,15 +3,15 @@
  * Plugin Name: Coming Soon Badge for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/coming-soon-for-woocommerce/
  * Description: Show coming soon badge over products
- * Version: 1.0.19
+ * Version: 1.1.0
  * Author: wpcentrics
  * Author URI: https://www.wp-centrics.com
  * Text Domain: coming-soon-for-woocommerce
  * Domain Path: /languages
  * Requires at least: 4.7
- * Tested up to: 6.7
+ * Tested up to: 6.9
  * WC requires at least: 3.0
- * WC tested up to: 9.6
+ * WC tested up to: 10.4.3
  * Requires PHP: 7.0
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -34,7 +34,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define ('COMING_SOON_WC_VERSION', '1.0.19' );
+define ('COMING_SOON_WC_VERSION', '1.1.0' );
 define ('COMING_SOON_WC_PATH', dirname(__FILE__) . '/' );
 define ('COMING_SOON_WC_URL', plugin_dir_url( __FILE__ ) );
 
