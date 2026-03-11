@@ -1,4 +1,9 @@
-
+/**
+ * Admin scripts for wizard / lightweight for all admin pages
+ *
+ * @package Coming Soon Badges for WooCommerce
+ * @version 1.1.0
+ */
 
 jQuery(document).ready(function($) {
 
@@ -13,7 +18,7 @@ jQuery(document).ready(function($) {
 
 		$.ajax({
 			url: ajaxurl,
-			data: { action: 'wc_coming_soon_wizard', ajax: $(this).attr('data-ajax'), key: $(this).attr('data-key'), param: $(this).attr('data-param') },
+			data: { action: 'wc_coming_soon_wizard', ajax: $(this).attr('data-ajax'), param: $(this).attr('data-param'), _nonce: $(this).attr('data-nonce') },
 			error: function (xhr, status, error) {
 				var errorMessage = xhr.status + ': ' + xhr.statusText
 				console.log('Coming Soon for WC, AJAX error - ' + errorMessage);

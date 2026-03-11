@@ -1,9 +1,9 @@
 <?php
 /*
- * Plugin Name: Coming Soon Badge for WooCommerce
+ * Plugin Name: Coming Soon Badges for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/coming-soon-for-woocommerce/
  * Description: Show coming soon badge over products
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: wpcentrics
  * Author URI: https://www.wp-centrics.com
  * Text Domain: coming-soon-for-woocommerce
@@ -11,7 +11,7 @@
  * Requires at least: 4.7
  * Tested up to: 6.9
  * WC requires at least: 3.0
- * WC tested up to: 10.4.3
+ * WC tested up to: 10.5.3
  * Requires PHP: 7.0
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -34,11 +34,18 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define ('COMING_SOON_WC_VERSION', '1.1.0' );
+define ('COMING_SOON_WC_VERSION', '1.1.1' );
 define ('COMING_SOON_WC_PATH', dirname(__FILE__) . '/' );
 define ('COMING_SOON_WC_URL', plugin_dir_url( __FILE__ ) );
 
-class Coming_Soon_WC {
+
+// Traits loading
+require_once( COMING_SOON_WC_PATH . 'inc/trait-admin-pane.php');
+
+class Coming_Soon_WC
+{
+	// Traits usage
+	use Coming_Soon_WC_Admin_Pane;
 
 	private $options = array ();
 	private $elementor_el = false;
@@ -47,7 +54,7 @@ class Coming_Soon_WC {
 	 * Constructor.
 	 *
 	 * @since 1.0.0
-	 * @version 1.0.14
+	 * @version 1.1.1
 	 *
 	 */
 	public function __construct() {
@@ -69,14 +76,13 @@ class Coming_Soon_WC {
 		// Admin side: product save
 		add_action( 'woocommerce_after_' . 'product' . '_object_save', array ($this, 'product_saved'), 10, 2);
 
-		// Admin-side interface: configuration
-		add_action( 'admin_menu', array ($this, 'admin_submenu'), 80 );
 
 		// Front: JS
 		add_action( 'wp_enqueue_scripts', array( $this, 'front_enqueue_scripts' ) );
 
 		// Inline CSS:
-		add_action('wp_head', array( $this, 'echo_inline_styles'), 100);
+		// add_action('wp_head', array( $this, 'echo_inline_styles'), 100);
+		add_action( 'wp_enqueue_scripts', array( $this, 'echo_inline_styles' ) );
 		
 		// Front: Loop
 		add_action( 'woocommerce_before_shop_loop_item_title', array ( $this, 'display_coming_soon_loop_wc_open' ), 9 );
@@ -95,19 +101,20 @@ class Coming_Soon_WC {
 		
 		// Support for divi background product image
 		add_filter( 'et_module_process_display_conditions', array ( $this, 'divi_feat_post_image_background' ), 10, 3 );
+		
+		// Call trait constructors
+		$this->contruct_admin_pane_trait();
 	}
 	
 	/**
 	 * After all plugins are loaded, we will initialise everything
 	 *
 	 * @since 1.0.0
+	 * @version 1.1.1
 	 *
 	 */
 	function init() {
-
-		// Register plugin text domain for translations files
-		load_plugin_textdomain( 'coming-soon-for-woocommerce', false, basename( dirname( __FILE__ ) ) . '/languages' );
-		
+		// Load textdomain removed, version 1.2
 	}
 		
 	/**
@@ -202,6 +209,7 @@ class Coming_Soon_WC {
 			$should_update = true;
 		}
 		
+		// Save options in the variable class
 		$this->options = $options;
 		
 		if ($should_update) {
@@ -215,6 +223,14 @@ class Coming_Soon_WC {
 		return $this->options;
 	}
 
+	public function get_option($key) {
+		
+		if( ! isset($this->options[$key]) )
+			return false;
+		
+		return $this->options[$key];
+	}
+
 	public function set_options($options) {
 
 		update_option( 'coming-soon-for-woocommerce', $options, true );
@@ -225,31 +241,44 @@ class Coming_Soon_WC {
 	 * Admin-side styles and scripts
 	 *
 	 * @since 1.0.0
+	 * @version 1.1.1
 	 *
 	 */
-	public function admin_load_styles_and_scripts () {
+	public function admin_load_styles_and_scripts()
+	{
+		$min = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 
 		// Only on WC settings > shipping tab we will load the admin script, for performance reasons
-		//if ( 'post.php' == basename($_SERVER["SCRIPT_NAME"]) || 'post-new.php' == basename($_SERVER["SCRIPT_NAME"]) ||  isset($_GET['page'] ) && $_GET['page'] == 'coming-soon-wc-opts' ) {
+		if( $this->its_csw_page_options() )
+		{
+			if ( ! did_action( 'wp_enqueue_media' ) ) wp_enqueue_media();
 
-			if ( isset($_GET['page'] ) && $_GET['page'] == 'coming-soon-wc-opts' ) {
+			wp_register_script( 'coming_soon_wc_admin_script', COMING_SOON_WC_URL . 'assets/js/admin-coming-soon-wc'.$min.'.js', array( 'jquery-core', 'wp-color-picker' ), COMING_SOON_WC_VERSION, array('in_footer' => true) );
+			wp_register_style ( 'coming_soon_wc_admin_style', COMING_SOON_WC_URL . 'assets/css/admin-coming-soon-wc'.$min.'.css', array('wp-color-picker'), COMING_SOON_WC_VERSION );
 
-				if ( ! did_action( 'wp_enqueue_media' ) ) wp_enqueue_media();
-
-				wp_register_script( 'coming_soon_wc_admin_script', COMING_SOON_WC_URL . 'assets/js/admin-coming-soon-wc.js', array( 'jquery-core', 'wp-color-picker' ), COMING_SOON_WC_VERSION );
-				wp_register_style ( 'coming_soon_wc_admin_style', COMING_SOON_WC_URL . 'assets/css/admin-coming-soon-wc.css', array('wp-color-picker'), COMING_SOON_WC_VERSION );
-
-				wp_enqueue_script ( 'coming_soon_wc_admin_script' );
-				wp_enqueue_style  ( 'coming_soon_wc_admin_style' );
-			} else {
-				
-				// Five stars / Wizard dialogs isolated for performance
-				wp_register_script( 'coming_soon_wc_admin_light_script', COMING_SOON_WC_URL . 'assets/js/admin-coming-soon-wc-light.js', array('jquery-core'), COMING_SOON_WC_VERSION );
-				wp_enqueue_script ( 'coming_soon_wc_admin_light_script' );
-			}
-
-		//}
+			wp_enqueue_script ( 'coming_soon_wc_admin_script' );
+			wp_enqueue_style  ( 'coming_soon_wc_admin_style' );
+		} else {
+			
+			// Five stars / Wizard dialogs isolated for performance
+			wp_register_script( 'coming_soon_wc_admin_light_script', COMING_SOON_WC_URL . 'assets/js/admin-coming-soon-wc-light'.$min.'.js', array('jquery-core'), COMING_SOON_WC_VERSION, array('in_footer' => true) );
+			wp_enqueue_script ( 'coming_soon_wc_admin_light_script' );
+		}
 	}
+	
+	/**
+	 * Check if we're in the plugin options page (any tab)
+	 *
+	 * @since 1.1.1
+	 *
+	 */
+	function its_csw_page_options()
+	{
+		$screen = get_current_screen();
+		return $screen && ! empty( $screen->id ) && $screen->id == 'woocommerce_page_coming-soon-wc-opts';
+	}
+		
+
 
 	/**
 	 * Check PHP version and WooCommerce
@@ -303,6 +332,7 @@ class Coming_Soon_WC {
 			<input type="checkbox" name="coming_soon_wc_switch" value="1" <?php if ($switch) echo 'checked'; ?> >
 			<?php esc_html_e('Show Coming Soon badge', 'coming-soon-for-woocommerce'); ?>
 			<input type="hidden" name="coming_soon_wc_post_id" value="<?php echo esc_attr( $WC_Product->get_id() ); ?>" />
+			<?php wp_nonce_field( 'csw-product-edition', 'coming_soon_wc_nonce' ); ?>
 		</div>
 		<?php
 	}
@@ -311,15 +341,19 @@ class Coming_Soon_WC {
 	 * Save the coming soon time fields from product editor
 	 *
 	 * @since 1.0.0
-	 * @version 1.0.16
+	 * @version 1.1.1
 	 *
 	 */
 
-	function product_saved( $WC_Product, $WC_Data_Store_WP ) {
+	function product_saved( $WC_Product, $WC_Data_Store_WP )
+	{	
+		if( ! wp_verify_nonce( 'coming_soon_wc_nonce', 'csw-product-edition' ) )
+			return;
 
+		if ( !isset( $_POST['coming_soon_wc_post_id'] ) )
+			return;
+		
 		$product_id = $WC_Product->get_id();
-
-		if ( !isset( $_POST['coming_soon_wc_post_id'] ) ) return;
 
 		if ( $_POST['coming_soon_wc_post_id'] == 0 || $_POST['coming_soon_wc_post_id'] == $product_id ) {
 
@@ -334,12 +368,12 @@ class Coming_Soon_WC {
 				
 				if ( is_null($arrival_date) ) {
 					// Can't get the date from product creation
-					$arrival_date = date('Y-m-d H:i:s', time() );
+					$arrival_date = gmdate('Y-m-d H:i:s', time() );
 
 				} else {
 
 					// Let's put date product creation (it will syncronize coming soon with future products publication)
-					$arrival_date = date('Y-m-d H:i:s', $arrival_date->getTimestamp() );
+					$arrival_date = gmdate('Y-m-d H:i:s', $arrival_date->getTimestamp() );
 				}
 			}
 
@@ -350,29 +384,6 @@ class Coming_Soon_WC {
 		}
 	}
 
-	/**********************************
-	  Admin config pane 
-	 ***********************************/
-
-	/**
-	 * Add submenu link on the WooCommerce admin menu option
-	 *
-	 * @since 1.0.0
-	 *
-	 */
-	function admin_submenu() {
-		add_submenu_page( 'woocommerce', esc_html__('Coming Soon for WooCommerce configuration', 'coming-soon-for-woocommerce'), esc_html__('Coming Soon config', 'coming-soon-for-woocommerce'), 'manage_options', 'coming-soon-wc-opts', array ($this, 'admin_pane'), 20 );
-	}
-	
-	/**
-	 * Require the admin pane printing and his functionalitiy
-	 *
-	 * @since 1.0.0
-	 *
-	 */
-	function admin_pane() {
-		require( COMING_SOON_WC_PATH . 'inc/admin-pane.php');
-	}
 	
 	/**
 	* Add link on the plugin list, to re-start the wizard
@@ -382,7 +393,7 @@ class Coming_Soon_WC {
 	
 		$start_link = array(
 			'<a href="'. admin_url( 'admin.php?page=coming-soon-wc-opts' )
-			 .'" style="color: #a16696; font-weight: bold;">'. esc_html__( 'Configure', 'coming-soon-for-woocommerce') .'</a>',
+			 .'" style="color: #038bdf; font-weight: bold;">'. esc_html__( 'Configure', 'coming-soon-for-woocommerce') .'</a>',
 		);
 	
 		return array_merge( $start_link, $links );
@@ -391,12 +402,13 @@ class Coming_Soon_WC {
 	/**
 	 * Ajax wizard / five stars, from AJAX call.
 	 *
-	 * @since 1.0.8
+	 * @since 1.1.1
 	 */
 	function wc_coming_soon_wizard() {
 
+		check_ajax_referer( 'wc-coming-soon-wizard', '_nonce' );
+		
 		$what  = isset($_GET['ajax'])  ? sanitize_key ( $_GET['ajax'] )  : '';
-		$key   = isset($_GET['key'])   ? sanitize_key ( $_GET['key'] )   : '';
 		$when  = isset($_GET['param']) ? sanitize_key ( $_GET['param'] ) : '';
 				
 		// Dimiss wizard / five stars (here key is not used) 
@@ -404,7 +416,7 @@ class Coming_Soon_WC {
 			echo '0';
 			exit();
 		}
-		
+
 		$this->update_wizard_opts($what, $when, true);
 	}
 
@@ -464,11 +476,14 @@ class Coming_Soon_WC {
 	 * Front side JS
 	 *
 	 * @since 1.0.0
+	 * @version 1.1.1
 	 *
 	 */
-	function front_enqueue_scripts () {
+	function front_enqueue_scripts ()
+	{	
+		$min = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 
-		wp_register_script( 'coming_soon_wc_script', COMING_SOON_WC_URL . 'assets/js/coming-soon-wc.js', array('jquery-core' ), COMING_SOON_WC_VERSION );
+		wp_register_script( 'coming_soon_wc_script', COMING_SOON_WC_URL . 'assets/js/coming-soon-wc'.$min.'.js', array('jquery-core' ), COMING_SOON_WC_VERSION, array('in_footer' => true) );
 		wp_enqueue_script  ( 'coming_soon_wc_script' );
 	}
 
@@ -476,12 +491,23 @@ class Coming_Soon_WC {
 	 * Inline CSS
 	 *
 	 * @since 1.0.0
+	 * @version 1.1.1
 	 *
 	 */
 	function echo_inline_styles () {
 		
 		$inline_css = $this->get_inline_scripts('loop') . $this->get_inline_scripts('product');
-		if ($inline_css != '') echo '<style>'.$inline_css.'</style>';
+		
+		if ($inline_css != '') 
+		{
+			if( ! defined('SCRIPT_DEBUG') || SCRIPT_DEBUG == false )
+				$inline_css = $this->minimizeCSSsimple($inline_css);
+			
+			wp_register_style( 'coming_soon_wc_style', false, array(), COMING_SOON_WC_VERSION );
+			wp_enqueue_style( 'coming_soon_wc_style' );
+
+			wp_add_inline_style( 'coming_soon_wc_style', $inline_css );
+		}
 	}
 
 	/**
@@ -591,6 +617,8 @@ class Coming_Soon_WC {
 			
 				break;
 
+
+			// Be aware! custom-image and image styles overwrite previous styles:
 			case 'custom-image':
 
 				if ( $image = wp_get_attachment_image_src( intval ( $badge_opts['custom-img'] ), 'woocommerce_thumbnail' ) ) {
@@ -609,6 +637,9 @@ class Coming_Soon_WC {
 				$align_hor = $badge_opts['align-hor'];
 
 				$inline_css  = "
+.coming_soon_wc_".$purpose."_wrapper {
+	position:relative;
+}
 .coming_soon_wc_".$purpose."_wrapper img {
 	position: static;
 }
@@ -631,46 +662,65 @@ class Coming_Soon_WC {
 	}
 
 	/**
+	 * Minfy CSS
+	 *
+	 * Thanks to: https://datayze.com/howto/minify-css-with-php
+	 * 
+	 * @since 1.1.1
+	 */
+	function minimizeCSSsimple($css)
+	{
+		$css = preg_replace('/\/\*((?!\*\/).)*\*\//s', '', $css); // remove comments, negative look ahead
+		$css = preg_replace('/\s{2,}/', ' ', $css); // collapse line spaces
+		$css = preg_replace('/\s*([:;{}])\s*/', '$1', $css); // remove spaces unneeded
+		$css = preg_replace('/;}/', '}', $css); // remove last semicolon on each clause
+		
+		return $css;
+	}
+
+	/**
 	 * Open coming soon in the products of the loop
 	 *
 	 * @since 1.0.0
-	 * @version 1.0.14
+	 * @version 1.1.1
 	 *
 	 */	
 	function display_coming_soon_loop_wc_open() {
 		
-		echo $this->get_open_badge('loop');
+		echo wp_kses_post( $this->get_open_badge('loop') );
 	}
 
 	/**
 	 * Close coming soon in the products of the loop
 	 *
 	 * @since 1.0.0
-	 * @version 1.0.14
+	 * @version 1.1.1
 	 *
 	 */	
 	function display_coming_soon_loop_wc_close() {
 
-		echo $this->get_close_badge('loop');
+		echo wp_kses_post( $this->get_close_badge('loop') );
 	}
 
 	/**
 	 * Before get template part. Can debug for loged admin.
 	 *
 	 * @since 1.0.0
-	 * @version 1.0.14
+	 * @version 1.1.1
 	 *
 	 */	
 	function wc_before_template_part ( $template_name, $template_path, $located, $args ) {
 
-		if ( isset($_GET['coming-soon-wc']) && $_GET['coming-soon-wc'] == 'show-placeholders' && current_user_can(manage_options) ) {
-			echo '<!-- CSW debug, open: ' . $template_name . '-->';
+		$debug_param = filter_input( INPUT_GET, 'coming-soon-wc', FILTER_SANITIZE_STRING );
+
+		if ( $debug_param === 'show-placeholders' && current_user_can('manage_options') ) {
+			echo '<!-- CSW debug, open: ' . esc_html($template_name) . '-->';
 		}
 				
 		if ($template_name == 'single-product/product-image.php') {
 			
-			echo $this->get_open_badge('product');
-			echo $this->get_close_badge('product');
+			echo wp_kses_post( $this->get_open_badge('product') );
+			echo wp_kses_post( $this->get_close_badge('product') );
 		}
 		
 	}
@@ -679,12 +729,15 @@ class Coming_Soon_WC {
 	 * After get template part. Can debug for loged admin.
 	 *
 	 * @since 1.0.0
+	 * @since 1.1.1
 	 *
 	 */	
 	function wc_after_template_part ( $template_name, $template_path, $located, $args ) {
 
-		if ( isset($_GET['coming-soon-wc']) && $_GET['coming-soon-wc'] == 'show-placeholders' && current_user_can(manage_options) ) {
-			echo '<!-- CSW debug, closing: ' . $template_name . '-->';
+		$debug_param = filter_input( INPUT_GET, 'coming-soon-wc', FILTER_SANITIZE_STRING );
+
+		if ( $debug_param === 'show-placeholders' && current_user_can('manage_options') ) {
+			echo '<!-- CSW debug, closing: ' . esc_html($template_name) . '-->';
 		}
 	}
 
@@ -692,6 +745,7 @@ class Coming_Soon_WC {
 	 * Open badge, double purpose: loop and product
 	 *
 	 * @since 1.0.14
+	 * @version 1.1.1
 	 *
 	 */	
 	function get_open_badge ( $purpose = 'loop' ) {
@@ -718,7 +772,7 @@ class Coming_Soon_WC {
 			
 			if ( $badge_style == 'line-text' && $this->options['badge_'.$purpose.'_opts']['align-ver'] == 'middle' ) $extra_css[] = 'coming-soon-wc-js-middle';
 
-			$code_html .= '<div class="coming_soon_wc_'.$purpose.'_wrapper ' . implode(' ', $extra_css) . '">';
+			$code_html .= '<div class="' . esc_attr( 'coming_soon_wc_'.$purpose.'_wrapper ' . implode(' ', $extra_css) ) . '">';
 
 			switch ($badge_style) {
 
@@ -799,12 +853,12 @@ class Coming_Soon_WC {
 	 * get product arrival
 	 *
 	 * @since 1.0.0
-	 * @version 1.0.3
+	 * @version 1.1.1
 	 *
 	 */
 	function time_diff ( $arrival_date, $date_now = false) {
 				
-		if (!$date_now) $date_now = date('Y-m-d H:i:s', time() );
+		if (!$date_now) $date_now = gmdate('Y-m-d H:i:s', time() );
 
 		$arrival_date = strtotime($arrival_date);
 		$date_now     = strtotime($date_now);
@@ -943,8 +997,11 @@ class Coming_Soon_WC {
 	}
 	*/
 }
+
 global $Coming_Soon_WC;
 $Coming_Soon_WC = new Coming_Soon_WC();
+
+require_once( COMING_SOON_WC_PATH . 'inc/wizard.php');
 
 // Declare WooCommerce HPOS compatibility
 add_action( 'before_woocommerce_init', function() {

@@ -1,4 +1,11 @@
-jQuery(document).ready(function($) {
+/**
+ * Front-end scripts 
+ *
+ * @package Coming Soon Badges for WooCommerce
+ * @version 1.1.0
+ */
+ 
+ jQuery(document).ready(function($) {
 
 	var cs_wrapper = $('.coming_soon_wc_product_wrapper');
 

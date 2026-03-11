@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Coming Soon for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-13 22:48+0000\n"
+"POT-Creation-Date: 2026-03-10 22:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -15,206 +15,261 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.4.6; wp-5.6-RC5-49768"
 
-#: inc/admin-pane.php:135
+#: inc/trait-admin-pane.php:175
 msgid "(NO BADGE)"
 msgstr ""
 
-#: inc/admin-pane.php:175
+#: inc/wizard.php:78
+msgid "Add easily a coming soon badges to WooCommerce products."
+msgstr ""
+
+#: inc/trait-admin-pane.php:208
 msgid "Background color:"
 msgstr ""
 
-#: inc/admin-pane.php:197
+#: inc/trait-admin-pane.php:230
 msgid "Background size:"
 msgstr ""
 
-#: inc/admin-pane.php:78 inc/admin-pane.php:83
+#: inc/trait-admin-pane.php:107 inc/trait-admin-pane.php:120
 msgid "Badge on loop"
 msgstr ""
 
-#: inc/admin-pane.php:79 inc/admin-pane.php:86
+#: inc/trait-admin-pane.php:108 inc/trait-admin-pane.php:125
 msgid "Badge on product page"
 msgstr ""
 
-#: inc/admin-pane.php:146
+#: inc/trait-admin-pane.php:320
 msgid "BADGE PREVIEW"
 msgstr ""
 
-#: inc/admin-pane.php:93
+#: inc/trait-admin-pane.php:133
 msgid "Badge style"
 msgstr ""
 
-#: inc/admin-pane.php:233
+#: inc/trait-admin-pane.php:266
 msgid "Border radius:"
 msgstr ""
 
-#: inc/admin-pane.php:227
+#: inc/trait-admin-pane.php:260
 msgid "Bottom"
 msgstr ""
 
-#: inc/admin-pane.php:216
+#: inc/trait-admin-pane.php:249
 msgid "Center"
 msgstr ""
 
-#: inc/admin-pane.php:98
+#: inc/trait-admin-pane.php:138
 msgid "CIRCLE TEXT"
 msgstr ""
 
-#: coming-soon-for-woocommerce.php:119 coming-soon-for-woocommerce.php:142
-#: inc/admin-pane.php:33 inc/admin-pane.php:157
+#: coming-soon-for-woocommerce.php:139 coming-soon-for-woocommerce.php:162
+#: inc/trait-admin-pane.php:66 inc/trait-admin-pane.php:190
 msgid "COMING SOON"
 msgstr ""
 
-#: coming-soon-for-woocommerce.php:329
-msgid "Coming Soon config"
+#: inc/trait-admin-pane.php:31
+msgid "Coming Soon Badges"
 msgstr ""
 
 #. Name of the plugin
-msgid "Coming Soon for WooCommerce"
+msgid "Coming Soon Badges for WooCommerce"
 msgstr ""
 
-#: coming-soon-for-woocommerce.php:329 inc/admin-pane.php:72
+#: inc/trait-admin-pane.php:105
+msgid "Coming Soon Badges for WooCommerce configuration"
+msgstr ""
+
+#: inc/trait-admin-pane.php:31
 msgid "Coming Soon for WooCommerce configuration"
 msgstr ""
 
-#: coming-soon-for-woocommerce.php:350
+#: coming-soon-for-woocommerce.php:396
 msgid "Configure"
 msgstr ""
 
-#: inc/admin-pane.php:129
+#: inc/wizard.php:79
+msgid "Configure now"
+msgstr ""
+
+#: inc/trait-admin-pane.php:169
 msgid "CUSTOM IMAGE"
 msgstr ""
 
-#: inc/admin-pane.php:266
+#: inc/trait-admin-pane.php:299
 msgid "Custom image"
 msgstr ""
 
-#: inc/admin-pane.php:167
+#: inc/wizard.php:95
+msgid "Do you like Coming Soon Badge for WooCommerce?"
+msgstr ""
+
+#: inc/wizard.php:102
+msgid "Don't show again"
+msgstr ""
+
+#: inc/trait-admin-pane.php:200
 msgid "Font size:"
 msgstr ""
 
-#: inc/admin-pane.php:169
+#: inc/trait-admin-pane.php:202
 msgid "Font weight:"
 msgstr ""
 
-#: inc/admin-pane.php:181
+#: inc/trait-admin-pane.php:214
 msgid "Height:"
 msgstr ""
 
-#: inc/admin-pane.php:84
+#: inc/trait-admin-pane.php:121
 msgid ""
 "Here you can set the badge over coming soon products on loops: shop homepage,"
 " categories, tags, results, etc."
 msgstr ""
 
-#: inc/admin-pane.php:87
+#: inc/trait-admin-pane.php:126
 msgid "Here you can set the badge over the product image on the product page."
 msgstr ""
 
-#: inc/admin-pane.php:213
+#: inc/trait-admin-pane.php:246
 msgid "Horizontal align:"
 msgstr ""
 
-#: inc/admin-pane.php:219
+#: inc/trait-admin-pane.php:252
 msgid "Horizontal margin:"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/coming-soon-for-woocommerce/"
 msgstr ""
 
 #. Author URI of the plugin
 msgid "https://www.wp-centrics.com"
 msgstr ""
 
-#: inc/admin-pane.php:201
+#: inc/trait-admin-pane.php:234
 msgid "Image size"
 msgstr ""
 
-#: inc/admin-pane.php:215
+#: inc/trait-admin-pane.php:248
 msgid "Left"
 msgstr ""
 
-#: inc/admin-pane.php:110
+#: inc/trait-admin-pane.php:150
 msgid "LINE TEXT"
 msgstr ""
 
-#: inc/admin-pane.php:226
+#: inc/trait-admin-pane.php:259
 msgid "Middle"
 msgstr ""
 
-#: inc/admin-pane.php:135
+#: inc/trait-admin-pane.php:175
 msgid "OFF"
 msgstr ""
 
-#: inc/admin-pane.php:187
+#: inc/trait-admin-pane.php:220
 msgid "Padding bottom:"
 msgstr ""
 
-#: inc/admin-pane.php:191
+#: inc/trait-admin-pane.php:224
 msgid "Padding left:"
 msgstr ""
 
-#: inc/admin-pane.php:193
+#: inc/trait-admin-pane.php:226
 msgid "Padding right:"
 msgstr ""
 
-#: inc/admin-pane.php:185
+#: inc/trait-admin-pane.php:218
 msgid "Padding top:"
 msgstr ""
 
-#: inc/admin-pane.php:277
+#: inc/wizard.php:97
+msgid ""
+"Please, rate <strong>Coming Soon Badge for WooCommerce</strong> on WordPress "
+"repository, it will help us a lot :)"
+msgstr ""
+
+#: inc/wizard.php:100
+msgid "Rate the plugin"
+msgstr ""
+
+#: inc/wizard.php:80 inc/wizard.php:101
+msgid "Remind later"
+msgstr ""
+
+#: inc/trait-admin-pane.php:310
 msgid "Remove image"
 msgstr ""
 
-#: inc/admin-pane.php:238
+#: inc/trait-admin-pane.php:271
 msgid "Reset badge loop values"
 msgstr ""
 
-#: inc/admin-pane.php:217
+#: inc/trait-admin-pane.php:250
 msgid "Right"
 msgstr ""
 
-#: coming-soon-for-woocommerce.php:273
+#: inc/trait-admin-pane.php:329
+msgid "Save changes"
+msgstr ""
+
+#: coming-soon-for-woocommerce.php:333
 msgid "Show Coming Soon badge"
 msgstr ""
 
 #. Description of the plugin
-msgid "Show coming soon over products"
+msgid "Show coming soon badge over products"
 msgstr ""
 
-#: inc/admin-pane.php:104
+#: inc/trait-admin-pane.php:144
 msgid "SQUARE TEXT"
 msgstr ""
 
-#: inc/admin-pane.php:173
+#: inc/trait-admin-pane.php:206
 msgid "Text color:"
 msgstr ""
 
-#: inc/admin-pane.php:156
+#: inc/trait-admin-pane.php:189
 msgid "Text:"
 msgstr ""
 
-#: inc/admin-pane.php:244
+#: inc/trait-admin-pane.php:277
 msgid "Thanks, but I will create my own CSS styles"
 msgstr ""
 
-#: inc/admin-pane.php:225
+#: inc/wizard.php:81
+msgid "Thanks, I know how to use it"
+msgstr ""
+
+#: inc/trait-admin-pane.php:258
 msgid "Top"
 msgstr ""
 
-#: inc/admin-pane.php:276
+#: inc/trait-admin-pane.php:309
 msgid "Upload image"
 msgstr ""
 
-#: inc/admin-pane.php:246
+#: inc/trait-admin-pane.php:279
 msgid "Use this classnames:"
 msgstr ""
 
-#: inc/admin-pane.php:223
+#: inc/trait-admin-pane.php:256
 msgid "Vertical align:"
 msgstr ""
 
-#: inc/admin-pane.php:229
+#: inc/trait-admin-pane.php:262
 msgid "Vertical margin:"
 msgstr ""
 
-#: inc/admin-pane.php:179
+#: inc/wizard.php:96
+msgid ""
+"We are very pleased that you by now have been using our plugin a few days."
+msgstr ""
+
+#: inc/wizard.php:77
+msgid "Welcome to Coming Soon Badge for WooCommerce:"
+msgstr ""
+
+#: inc/trait-admin-pane.php:212
 msgid "Width:"
 msgstr ""
 
@@ -222,6 +277,6 @@ msgstr ""
 msgid "wpcentrics"
 msgstr ""
 
-#: inc/admin-pane.php:65
+#: inc/trait-admin-pane.php:98
 msgid "Your preferences has been saved."
 msgstr ""

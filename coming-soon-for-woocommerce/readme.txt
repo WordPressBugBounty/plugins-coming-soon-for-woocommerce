@@ -5,8 +5,8 @@ Tags: woocommerce badge, coming soon, badge, product badge
 Requires at least: 4.7
 Tested up to: 6.9
 WC requires at least: 3.0
-WC tested up to: 10.4.3
-Stable tag: 1.1.0
+WC tested up to: 10.5.3
+Stable tag: 1.1.1
 Requires PHP: 7.0
 Requires Plugins: woocommerce
 License: GPLv2 or later
@@ -54,13 +54,13 @@ Can be installed as usual:
 
 2. Or download from wordpress.org and upload on plugins>add new. 
 
-3. Go to Woocommerce > Coming Soon config and edit your badge
+3. Go to Woocommerce > Coming Soon Badges and edit your badge
 
 = How to configure the plugin? =
 
 1. Activate it
 
-2. Setup the badges in Woocommerce > Coming Soon config (you can skip this step, will work by default with a gray spot badge)
+2. Setup the badges in Woocommerce > Coming Soon Badges (you can skip this step, will work by default with a gray spot badge)
 
 3. Edit any product on which you want to show the badge, and activate the checkbox labeled "Show Coming Soon badge" under the publication product date.
 
@@ -68,7 +68,7 @@ Can be installed as usual:
 
 = Where I setup the badges? =
 
-On admin side, go to WooCommerce > Coming Soon config
+On admin side, go to WooCommerce > Coming Soon Badges
 
 = How to disable adding to cart when the product is set to coming soon? = 
 
@@ -128,6 +128,10 @@ The plugin can't guess your theme font-family or product thumbnail size, so mayb
 4. The product page
 
 == Changelog ==
+
+= 1.1.1 - 2026-03-11 =
+* Improved performance: CSS + JS minfied
+* Checked for WooCommerce 10.5.3
 
 = 1.1.0 - 2026-01-09 =
 * Checked for WordPress 6.9

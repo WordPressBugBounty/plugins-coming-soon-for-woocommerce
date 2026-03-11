@@ -1,4 +1,9 @@
-
+/**
+ * Admin options page script 
+ *
+ * @package Coming Soon Badges for WooCommerce
+ * @version 1.1.0
+ */
 
 jQuery(document).ready(function($) {
 
