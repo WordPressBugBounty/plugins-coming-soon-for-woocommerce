@@ -5,8 +5,8 @@ Tags: woocommerce badge, coming soon, badge, product badge
 Requires at least: 4.7
 Tested up to: 6.9
 WC requires at least: 3.0
-WC tested up to: 10.5.3
-Stable tag: 1.1.1
+WC tested up to: 10.6.1
+Stable tag: 1.1.2
 Requires PHP: 7.0
 Requires Plugins: woocommerce
 License: GPLv2 or later
@@ -128,6 +128,10 @@ The plugin can't guess your theme font-family or product thumbnail size, so mayb
 4. The product page
 
 == Changelog ==
+
+= 1.1.2 - 2026-03-16 =
+* Fixed: Bug saving the "Show Coming Soon badge" checkbox in product page
+* Checked for WooCommerce 10.6.1
 
 = 1.1.1 - 2026-03-11 =
 * Improved performance: CSS + JS minfied

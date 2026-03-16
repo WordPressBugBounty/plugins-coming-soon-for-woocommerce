@@ -3,7 +3,7 @@
  * Plugin Name: Coming Soon Badges for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/coming-soon-for-woocommerce/
  * Description: Show coming soon badge over products
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: wpcentrics
  * Author URI: https://www.wp-centrics.com
  * Text Domain: coming-soon-for-woocommerce
@@ -11,7 +11,7 @@
  * Requires at least: 4.7
  * Tested up to: 6.9
  * WC requires at least: 3.0
- * WC tested up to: 10.5.3
+ * WC tested up to: 10.6.1
  * Requires PHP: 7.0
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -34,7 +34,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define ('COMING_SOON_WC_VERSION', '1.1.1' );
+define ('COMING_SOON_WC_VERSION', '1.1.2' );
 define ('COMING_SOON_WC_PATH', dirname(__FILE__) . '/' );
 define ('COMING_SOON_WC_URL', plugin_dir_url( __FILE__ ) );
 
@@ -341,13 +341,17 @@ class Coming_Soon_WC
 	 * Save the coming soon time fields from product editor
 	 *
 	 * @since 1.0.0
-	 * @version 1.1.1
+	 * @version 1.1.2
 	 *
 	 */
 
 	function product_saved( $WC_Product, $WC_Data_Store_WP )
-	{	
-		if( ! wp_verify_nonce( 'coming_soon_wc_nonce', 'csw-product-edition' ) )
+	{
+		$nonce = isset( $_POST['coming_soon_wc_nonce'] )
+			? sanitize_text_field( wp_unslash( $_POST['coming_soon_wc_nonce'] ) )
+			: '';
+
+		if ( ! wp_verify_nonce($nonce, 'csw-product-edition') )
 			return;
 
 		if ( !isset( $_POST['coming_soon_wc_post_id'] ) )
@@ -568,7 +572,7 @@ class Coming_Soon_WC
 }
 .coming_soon_wc_".$purpose."_wrapper .coming_soon_text {
 	position:absolute;
-	z-index: 1;
+	z-index: 1000;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -645,7 +649,7 @@ class Coming_Soon_WC
 }
 .coming_soon_wc_".$purpose."_wrapper .coming_soon_img {
 	position: absolute;
-	z-index: 1;
+	z-index: 1000;
     left: 0;
     right: 0;
     top: 0;
