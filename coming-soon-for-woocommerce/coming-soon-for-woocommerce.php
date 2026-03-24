@@ -3,7 +3,7 @@
  * Plugin Name: Coming Soon Badges for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/coming-soon-for-woocommerce/
  * Description: Show coming soon badge over products
- * Version: 1.1.2
+ * Version: 1.1.3
  * Author: wpcentrics
  * Author URI: https://www.wp-centrics.com
  * Text Domain: coming-soon-for-woocommerce
@@ -34,7 +34,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define ('COMING_SOON_WC_VERSION', '1.1.2' );
+define ('COMING_SOON_WC_VERSION', '1.1.3' );
 define ('COMING_SOON_WC_PATH', dirname(__FILE__) . '/' );
 define ('COMING_SOON_WC_URL', plugin_dir_url( __FILE__ ) );
 
@@ -61,7 +61,7 @@ class Coming_Soon_WC
 
 		$this->load_options();
 
-		// Init stuff + comming products let  term
+		// Init 
 		add_action( 'init', array ( $this, 'init' ) );
 
 		// Admin-side interface: styles & scripts
@@ -121,7 +121,7 @@ class Coming_Soon_WC
 	 * Load options at plugin inisialitation, and maybe first install.
 	 *
 	 * @since 1.0.0
-	 * @version 1.0.11
+	 * @version 1.1.3
 	 */
 	public function load_options() {
 		
@@ -136,7 +136,7 @@ class Coming_Soon_WC
 			'current_version'  => '',
 			
 			'badge_loop_style' => 'circle-text',
-			'badge_loop_text'  => __('COMING SOON', 'coming-soon-for-woocommerce'),
+			'badge_loop_text'  => 'COMING SOON',
 			'badge_loop_opts'  => array (
 									'font-size'       => '14',
 									'font-weight'     => '600',
@@ -159,7 +159,7 @@ class Coming_Soon_WC
 			),
 
 			'badge_product_style' => 'circle-text',
-			'badge_product_text'  => __('COMING SOON', 'coming-soon-for-woocommerce'),
+			'badge_product_text'  => 'COMING SOON',
 			'badge_product_opts'  => array (
 									'font-size'       => '28', // double as loop
 									'font-weight'     => '600',
@@ -686,36 +686,40 @@ class Coming_Soon_WC
 	 * Open coming soon in the products of the loop
 	 *
 	 * @since 1.0.0
-	 * @version 1.1.1
+	 * @version 1.1.3
 	 *
 	 */	
 	function display_coming_soon_loop_wc_open() {
 		
-		echo wp_kses_post( $this->get_open_badge('loop') );
+		$open_code = $this->get_open_badge('loop');
+		if( $open_code && $open_code != '' ) echo wp_kses_post( $open_code );
 	}
 
 	/**
 	 * Close coming soon in the products of the loop
 	 *
 	 * @since 1.0.0
-	 * @version 1.1.1
+	 * @version 1.1.3
 	 *
 	 */	
 	function display_coming_soon_loop_wc_close() {
 
-		echo wp_kses_post( $this->get_close_badge('loop') );
+		$close_code = $this->get_close_badge('loop');
+		if( $close_code && $close_code != '' ) echo wp_kses_post( $close_code );
+
+		//echo wp_kses_post( $this->get_close_badge('loop') );
 	}
 
 	/**
 	 * Before get template part. Can debug for loged admin.
 	 *
 	 * @since 1.0.0
-	 * @version 1.1.1
+	 * @version 1.1.3
 	 *
 	 */	
 	function wc_before_template_part ( $template_name, $template_path, $located, $args ) {
 
-		$debug_param = filter_input( INPUT_GET, 'coming-soon-wc', FILTER_SANITIZE_STRING );
+		$debug_param = filter_input(INPUT_GET, 'coming-soon-wc', FILTER_SANITIZE_SPECIAL_CHARS);
 
 		if ( $debug_param === 'show-placeholders' && current_user_can('manage_options') ) {
 			echo '<!-- CSW debug, open: ' . esc_html($template_name) . '-->';
@@ -723,8 +727,11 @@ class Coming_Soon_WC
 				
 		if ($template_name == 'single-product/product-image.php') {
 			
-			echo wp_kses_post( $this->get_open_badge('product') );
-			echo wp_kses_post( $this->get_close_badge('product') );
+			$open_code = $this->get_open_badge('product');
+			if( $open_code && $open_code != '' ) echo wp_kses_post( $open_code );
+
+			$close_code = $this->get_close_badge('product');
+			if( $close_code && $close_code != '' ) echo wp_kses_post( $close_code );
 		}
 		
 	}
@@ -733,12 +740,12 @@ class Coming_Soon_WC
 	 * After get template part. Can debug for loged admin.
 	 *
 	 * @since 1.0.0
-	 * @since 1.1.1
+	 * @since 1.1.3
 	 *
 	 */	
 	function wc_after_template_part ( $template_name, $template_path, $located, $args ) {
 
-		$debug_param = filter_input( INPUT_GET, 'coming-soon-wc', FILTER_SANITIZE_STRING );
+		$debug_param = filter_input(INPUT_GET, 'coming-soon-wc', FILTER_SANITIZE_SPECIAL_CHARS);
 
 		if ( $debug_param === 'show-placeholders' && current_user_can('manage_options') ) {
 			echo '<!-- CSW debug, closing: ' . esc_html($template_name) . '-->';

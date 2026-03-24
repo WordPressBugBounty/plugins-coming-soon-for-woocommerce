@@ -6,7 +6,7 @@ Requires at least: 4.7
 Tested up to: 6.9
 WC requires at least: 3.0
 WC tested up to: 10.6.1
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 Requires PHP: 7.0
 Requires Plugins: woocommerce
 License: GPLv2 or later
@@ -66,36 +66,36 @@ Can be installed as usual:
 
 == Frequently Asked Questions ==
 
-= Where I setup the badges? =
+= Where I design the badges? =
 
-On admin side, go to WooCommerce > Coming Soon Badges
+On the admin side, go to WooCommerce > Coming Soon Badges
 
 = How to disable adding to cart when the product is set to coming soon? = 
 
-The plugin doesn’t do it for now. There are two ways in WooCommerce to lock a product purchase:
+The plugin doesn’t do this yet. There are two ways in WooCommerce to prevent a product from being purchased:
 
 1. You can remove the regular and sale price for a product, or
 
 2. You can set the product stock to 0, or the stock status to out of stock (if you haven't set the WooCommerce product setting "Hide out of stock items from catalog", otherwise product will be hidden)
 
-= Where I set coming soon for my products? =
+= Where do I set the Coming Soon badge for my products? =
 
-Enter on a product edition, and activate the checkbox labeled "Show Coming Soon badge", just below the publication date. Then save the product.
+Open a product for editing and activate the checkbox labeled "Show Coming Soon badge", located just below the publication date. Then save the product.
 
-= Will work with my theme? =
+= Will it work with my theme? =
 
-Well, we can't be 100% sure, but we have coded the plugin following the standard WooCommerce template system, and should work well on every theme. 
-In any case, we have written it carefully to ensure it doesn’t break the layout if it doesn’t work.
+We can’t be 100% sure, but the plugin was coded following the standard WooCommerce template system and should work well with any theme. 
+In any case, it was designed carefully to ensure it doesn’t break the layout if it isn’t fully compatible.
 
-Please, write us on the support forum to tell us about: whether to say if it works well, or not with your theme. It will help us and others, and we will try to make it work for you if it doesn’t.
+Please write to us on the support forum to let us know whether the plugin works well with your theme or not. Your feedback will help us and other users, and we will try to make it work for you if it doesn’t.
 
-= I'm theme developer. How to be compatible? =
+= I’m a theme developer. How can I make my theme compatible? =
 
 Coming Soon for WooCommerce works with the actions found in the standard product loop and single product templates.
 
 The used actions to print the badge code are:
 
-For single product: do_action( 'woocommerce_after_main_content' );
+For single product: do_action( 'woocommerce_before_template_part' );
 For product loop:   do_action( 'woocommerce_shop_loop_item_title' );
 
 You can find this actions in the templates:
@@ -103,8 +103,7 @@ You can find this actions in the templates:
 wp-content/plugins/woocommerce/templates/single-product.php  (single product template)
 wp-content/plugins/woocommerce/templates/content-product.php (print each product on loop)
 
-...if you want to override this files on your WooCommerce child theme, or you're coding one from scratch,
-maybe you have the same file names on your theme folder:
+...if you want to override these files in your WooCommerce child theme, or if you’re coding a theme from scratch, you may have the same file names in your theme folder:
 
 wp-content/themes/your-theme/woocommerce/content-product.php
 wp-content/themes/your-theme/woocommerce/single-product.php
@@ -115,6 +114,16 @@ For single product: do_action( 'woocommerce_after_main_content' );
 For product loop:   do_action( 'woocommerce_shop_loop_item_title' );
 
 ...and Coming Soon for WooCommerce will do the rest :)
+
+= How can I debug my theme template system for compatibility with Coming Soon Badges? =
+
+First, ensure you're logged as admin, otherwise the plugin will not show any information.
+
+Then add this parameter to the end of any page URL: ?coming-soon-wc=1
+
+In this way: www.mywebsite.com/?coming-soon-wc=1
+
+Look into the code for: <!-- CSW debug... --> log info
 
 = The badge preview is not exactly the same as the badge on the front end =
 
@@ -128,6 +137,10 @@ The plugin can't guess your theme font-family or product thumbnail size, so mayb
 4. The product page
 
 == Changelog ==
+
+= 1.1.3 - 2026-03-24 =
+* Fixed: Solved PHP deprecated warning
+* Fixed: Solved "Translation loading domain was triggered too early" notice
 
 = 1.1.2 - 2026-03-16 =
 * Fixed: Bug saving the "Show Coming Soon badge" checkbox in product page
